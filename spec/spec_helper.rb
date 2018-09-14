@@ -8,8 +8,8 @@ ActiveRecord::Base.establish_connection(
   adapter:  'firebird',
   username: 'SYSDBA',
   password: 'masterkey',
-  host: 'db',
-  database: '/firebird/data/example.fdb',
+  host: 'localhost',
+  database: '/Users/antanas/gems/vipantonio/firebird_adapter/db/example.fdb',
   encoding: 'UTF-8',
 )
 
