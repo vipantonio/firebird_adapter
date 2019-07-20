@@ -5,12 +5,14 @@ class Arel::Visitors::Firebird < Arel::Visitors::ToSql
   def visit_Arel_Nodes_SelectCore(o, collector, select_statement)
     collector << 'SELECT'
 
-    collector = maybe_visit select_statement.limit, collector
-    collector = maybe_visit select_statement.offset, collector
+    visit_Arel_Nodes_SelectOptions(select_statement, collector)
 
     collector = maybe_visit o.top, collector
+
     collector = maybe_visit o.set_quantifier, collector
+
     collect_nodes_for o.projections, collector, SPACE
+
     if o.source && !o.source.empty?
       collector << ' FROM '
       collector = visit o.source, collector
